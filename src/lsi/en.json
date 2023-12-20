@@ -30,7 +30,7 @@
     "initialize": "Initialize"
   },
   "Menu": {
-    "home": "Welcome",
+    "home": "My lists",
     "about": "About Application",
     "detail": "Shopping list detail"
   }

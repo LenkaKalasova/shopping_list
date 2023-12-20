@@ -1,13 +1,13 @@
 //@@viewOn:imports
 import { Utils, createVisualComponent, useSession, Lsi } from "uu5g05";
-import Uu5Elements from "uu5g05-elements";
-import Plus4U5Elements from "uu_plus4u5g02-elements";
 import { withRoute } from "uu_plus4u5g02-app";
 
 import Config from "./config/config.js";
-import WelcomeRow from "../bricks/welcome-row.js";
+import MyLists from "../bricks/my-lists.js";
 import RouteBar from "../core/route-bar.js";
 import importLsi from "../lsi/import-lsi.js";
+import uu5TilesElements from "uu5tilesg02-elements"
+import ShoppingListProvider from "../bricks/shopping-list-provider.js";
 
 //@@viewOff:imports
 
@@ -16,11 +16,9 @@ import importLsi from "../lsi/import-lsi.js";
 
 //@@viewOn:css
 const Css = {
-  icon: () =>
-    Config.Css.css({
-      fontSize: 48,
-      lineHeight: "1em",
-    }),
+  main: () => Config.Css.css({
+    padding: 32,
+  }),
 };
 //@@viewOff:css
 
@@ -30,6 +28,7 @@ const Css = {
 let Home = createVisualComponent({
   //@@viewOn:statics
   uu5Tag: Config.TAG + "Home",
+  nestingLevel: ["areaCollection", "area"],
   //@@viewOff:statics
 
   //@@viewOn:propTypes
@@ -49,12 +48,11 @@ let Home = createVisualComponent({
     //@@viewOff:interface
 
     //@@viewOn:render
-    const attrs = Utils.VisualComponent.getAttrs(props);
+    const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
     return (
       <div {...attrs}>
         <RouteBar />
-        MyShoppingApp
-          
+        <ShoppingListProvider /> 
       </div>
     );
     //@@viewOff:render

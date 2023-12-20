@@ -73,7 +73,7 @@ const ShoppingList = createVisualComponent({
     }
 
     return currentNestingLevel ? (
-      <Uu5Elements.Block header="Nákup víkend" headerType="title" actionList={[{icon: "uugds-plus-circle", onClick: () => setModalOpen(true) }]}>
+      <Uu5Elements.Block header="Nákup víkend" headerType="title" actionList={[{icon: "uugds-plus-circle", children: "Vytvořit", onClick: () => setModalOpen(true) }]}>
       <Uu5Elements.Grid display="inline" {...attrs}>
         {itemList.map((item) => (
           <Item key={item.id} {...item} onDelete = {() => handleDelete (item.id)} />
