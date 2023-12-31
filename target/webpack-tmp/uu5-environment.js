@@ -1,7 +1,1 @@
-
-var fallbackConfig = {"uu5loaderg01_initUuAppDisabled":true};
-var devConfig = require("C:\\Users\\lenka\\OneDrive\\Documents\\Lenka škola\\Frontendové systémy\\uu_shoppingapp_maing01\\uu_shoppingapp_maing01-hi\\env\\development.json").uu5Environment;
-var config = require("C:\\Users\\lenka\\OneDrive\\Documents\\Lenka škola\\Frontendové systémy\\uu_shoppingapp_maing01\\uu_shoppingapp_maing01-hi\\env\\production.json").uu5Environment || {};
-if (devConfig) for (var k in devConfig) config[k] = devConfig[k];
-if (fallbackConfig) for (var k in fallbackConfig) if (!(k in config)) config[k] = fallbackConfig[k];
-window.UU5 = { Environment: config };
+window.UU5={Environment: {"uu5loaderg01_initUuAppDisabled":false,"uu_app_oidc_providers_oidcg02_uri":null,"uu5g05_libraryRegistryBaseUri":null,"uu5g05_plus4UGoBaseUri":null,"uu_plus4u5g02_identityManagementBaseUri":null,"uu_plus4u5g02_commonServicesBaseUri":null,"uu_plus4u5g02_peopleBaseUri":null,"uu_plus4u5g02_organizationBaseUri":null,"uu_plus4u5g02_uuApp":{"name":"uuShoppingapp"}}};

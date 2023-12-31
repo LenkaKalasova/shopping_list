@@ -1,10 +1,14 @@
 //@@viewOn:imports
-import { Utils, createVisualComponent, PropTypes, useState, useScreenSize } from "uu5g05";
+import { Utils, createVisualComponent, PropTypes, useState, useScreenSize, Lsi } from "uu5g05";
 import Uu5Elements from "uu5g05-elements";
 import Uu5Forms from "uu5g05-forms";
 import Config from "./config/config.js";
 import Uu5TilesElements from "uu5tilesg02-elements";
 import ShoppingListTile from "./shopping-list-tile.js";
+import DarkModeToggle from "./dark-mode-toggle.js";
+import { AppBackgroundProvider } from "uu5g05";
+import importLsi from "../lsi/import-lsi.js";
+
 
 //@@viewOff:imports
 
@@ -54,17 +58,22 @@ const MyLists = createVisualComponent({
     const currentNestingLevel = Utils.NestingLevel.getNestingLevel(props, MyLists);
     return currentNestingLevel ? (
       <>
-      <Uu5Elements.Block header = "Seznam nákupních listů" actionList={[{icon: "uugds-plus-circle", children: "Vytvořit", onClick: () => setCreateOpen(true) }]}>
+      <AppBackgroundProvider>
+        <DarkModeToggle />
+      <Uu5Elements.Block header ={<Lsi import={importLsi} path={["MyLists", "list"]}/> } actionList={[{icon: "uugds-plus-circle", children: <Lsi lsi={{cs: "Vytvořit", en: "Create"}}/>, onClick: () => setCreateOpen(true) }]}>
+      
       <Uu5TilesElements.Grid data={props.data} tileMinWidth={100} tileMaxWidth={200}>
       {<ShoppingListTile></ShoppingListTile>}
-    </Uu5TilesElements.Grid> 
+    </Uu5TilesElements.Grid>
+     
     </Uu5Elements.Block>
     <Uu5Forms.Form.Provider key={createOpen} onSubmit={async (e) => {await props.onCreate ({id: Utils.String.generateId(), ...e.data.value }); setCreateOpen(false);}}>
-      <Uu5Elements.Modal open={createOpen} onClose={() =>setCreateOpen (false)} header="Vytvoř nový nákupní seznam" 
+      <Uu5Elements.Modal open={createOpen} onClose={() =>setCreateOpen (false)} header={<Lsi import={importLsi} path={["MyLists", "create"]}/> } 
       footer={<div> <Uu5Forms.CancelButton/> <Uu5Forms.SubmitButton/> </div>}>
       <Uu5Forms.FormText name="name" required/>
       </Uu5Elements.Modal>
       </Uu5Forms.Form.Provider>
+      </AppBackgroundProvider>
       </>
       ) : null;
     //@@viewOff:render

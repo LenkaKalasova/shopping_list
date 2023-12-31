@@ -33,5 +33,13 @@
     "home": "Moje seznamy",
     "about": "O aplikaci",
     "detail": "Detail nákupního seznamu"
+  },
+  "MyLists":{
+    "list": "Seznam nákupních listů",
+    "create": "Vytvoř nový nákupní list"
+  },
+  "ShoppingList": {
+    "name": "Nákup víkend",
+    "create": "Vytvoř novou položku"
   }
 }

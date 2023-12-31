@@ -1,9 +1,11 @@
 //@@viewOn:imports
-import { createVisualComponent, Utils, useState, Content } from "uu5g05";
+import { createVisualComponent, Utils, useState, Content, AppBackgroundProvider, Lsi } from "uu5g05";
 import Uu5Elements from "uu5g05-elements";
 import Uu5Forms from "uu5g05-forms"
 import Item from "./item.js";
 import Config from "./config/config.js";
+import DarkModeToggle from "./dark-mode-toggle.js";
+import importLsi from "../lsi/import-lsi.js";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -73,20 +75,25 @@ const ShoppingList = createVisualComponent({
     }
 
     return currentNestingLevel ? (
-      <Uu5Elements.Block header="Nákup víkend" headerType="title" actionList={[{icon: "uugds-plus-circle", children: "Vytvořit", onClick: () => setModalOpen(true) }]}>
+      <>
+      <AppBackgroundProvider>
+        <DarkModeToggle />
+      <Uu5Elements.Block header={<Lsi import={importLsi} path={["ShoppingList", "name"]}/>} headerType="title" actionList={[{icon: "uugds-plus-circle", children: <Lsi lsi={{cs: "Vytvořit", en: "Create"}}/>, onClick: () => setModalOpen(true) }]}>
       <Uu5Elements.Grid display="inline" {...attrs}>
         {itemList.map((item) => (
           <Item key={item.id} {...item} onDelete = {() => handleDelete (item.id)} />
         ))}
       </Uu5Elements.Grid>
       <Uu5Forms.Form.Provider key={modalOpen} onSubmit={handleSubmit}>
-        <Uu5Elements.Modal open={modalOpen} onClose={() =>setModalOpen (false)} header="Vytvoř novou položku" 
+        <Uu5Elements.Modal open={modalOpen} onClose={() =>setModalOpen (false)} header={<Lsi import={importLsi} path={["ShoppingList", "create"]}/>} 
         footer={<div> <Uu5Forms.CancelButton/> <Uu5Forms.SubmitButton/> </div>}>
           <Uu5Forms.FormText name="name" label="Název položky"/>
           
         </Uu5Elements.Modal>
         </Uu5Forms.Form.Provider>
       </Uu5Elements.Block>
+      </AppBackgroundProvider>
+      </>
     ) : null;
     //@@viewOff:render
   },

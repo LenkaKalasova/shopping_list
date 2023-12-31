@@ -1,7 +1,8 @@
 //@@viewOn:imports
-import { createComponent } from "uu5g05";
+import { createComponent, useState } from "uu5g05";
 import Config from "./config/config.js";
 import Uu5TilesElements from "uu5tilesg02-elements";
+import Uu5Elements from "uu5g05-elements";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -25,7 +26,7 @@ const ShoppingListTile = createComponent({
 
   render(props) {
     //@@viewOn:private
-    
+    const [deleteOpen, setDeleteOpen] = useState (false);
     props.data.handlerMap.delete;
     //@@viewOff:private
 
@@ -34,10 +35,23 @@ const ShoppingListTile = createComponent({
 
     //@@viewOn:render
     return (
+      <>
       <Uu5TilesElements.Tile 
       header = {props.data.data.name} 
-      actionList={[{icon: "uugds-close-circle-solid", onClick: () => props.data.handlerMap.delete()}]}>
+      actionList={[{icon: "uugds-close-circle-solid", onClick:() => setDeleteOpen(true) }]}>
         </Uu5TilesElements.Tile>
+        <Uu5Elements.Dialog 
+        open={deleteOpen}
+        onClose={() => setDeleteOpen(false)}
+        header="Chcete smazat položku?" 
+        info={props.data.data.name}
+        icon="uugds-delete" 
+        actionList={[
+          {children: "Smazat", colorScheme: "negative", significance: "highlighted", onClick:() => props.data.handlerMap.delete()},
+          {children: "Zrušit", onClick:() => setDeleteOpen(false)}
+        ]}
+        ></Uu5Elements.Dialog>
+        </>
     );
     //@@viewOff:render
   },

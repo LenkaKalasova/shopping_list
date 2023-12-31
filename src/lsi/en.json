@@ -33,5 +33,13 @@
     "home": "My lists",
     "about": "About Application",
     "detail": "Shopping list detail"
+  },
+  "MyLists":{
+    "list": "List of shopping lists",
+    "create": "Create a new shopping list"
+  },
+  "ShoppingList": {
+    "name": "Weekend shopping",
+    "create": "Create a new item"
   }
 }
