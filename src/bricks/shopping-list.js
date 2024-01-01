@@ -87,7 +87,7 @@ const ShoppingList = createVisualComponent({
       <Uu5Forms.Form.Provider key={modalOpen} onSubmit={handleSubmit}>
         <Uu5Elements.Modal open={modalOpen} onClose={() =>setModalOpen (false)} header={<Lsi import={importLsi} path={["ShoppingList", "create"]}/>} 
         footer={<div> <Uu5Forms.CancelButton/> <Uu5Forms.SubmitButton/> </div>}>
-          <Uu5Forms.FormText name="name" label="Název položky"/>
+          <Uu5Forms.FormText name="name" label={<Lsi import={importLsi} path={["ShoppingList", "itemName"]}/>}/>
           
         </Uu5Elements.Modal>
         </Uu5Forms.Form.Provider>

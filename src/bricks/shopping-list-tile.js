@@ -1,8 +1,9 @@
 //@@viewOn:imports
-import { createComponent, useState } from "uu5g05";
+import { createComponent, useState, Lsi } from "uu5g05";
 import Config from "./config/config.js";
 import Uu5TilesElements from "uu5tilesg02-elements";
 import Uu5Elements from "uu5g05-elements";
+import importLsi from "../lsi/import-lsi.js";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -43,12 +44,12 @@ const ShoppingListTile = createComponent({
         <Uu5Elements.Dialog 
         open={deleteOpen}
         onClose={() => setDeleteOpen(false)}
-        header="Chcete smazat položku?" 
+        header={<Lsi import={importLsi} path={["ShoppingListTile", "deleteItem"]}/>} 
         info={props.data.data.name}
         icon="uugds-delete" 
         actionList={[
-          {children: "Smazat", colorScheme: "negative", significance: "highlighted", onClick:() => props.data.handlerMap.delete()},
-          {children: "Zrušit", onClick:() => setDeleteOpen(false)}
+          {children: <Lsi import={importLsi} path={["ShoppingListTile", "delete"]}/>, colorScheme: "negative", significance: "highlighted", onClick:() => props.data.handlerMap.delete()},
+          {children: <Lsi import={importLsi} path={["ShoppingListTile", "cancel"]}/>, onClick:() => setDeleteOpen(false)}
         ]}
         ></Uu5Elements.Dialog>
         </>

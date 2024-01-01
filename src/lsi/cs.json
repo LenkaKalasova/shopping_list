@@ -40,6 +40,12 @@
   },
   "ShoppingList": {
     "name": "Nákup víkend",
-    "create": "Vytvoř novou položku"
+    "create": "Vytvoř novou položku",
+    "itemName": "Název položky"
+  },
+  "ShoppingListTile":{
+    "deleteItem": "Chcete smazat tuto položku?",
+    "delete": "Smazat",
+    "cancel": "Zrušit"
   }
 }
