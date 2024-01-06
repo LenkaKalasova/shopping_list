@@ -2,6 +2,7 @@
 import { createVisualComponent, Utils, Content } from "uu5g05";
 import Config from "./config/config.js";
 import Uu5Elements from "uu5g05-elements";
+import Uu5Forms from "uu5g05-forms";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -44,7 +45,12 @@ const Item = createVisualComponent({
 
     return currentNestingLevel ? (
       <Uu5Elements.ListItem colorScheme = "cyan" actionList={[{icon: "uugds-close", onClick: props.onDelete }]}{...attrs}>
-     {props.name}
+     <Uu5Forms.Checkbox.Input
+          icon={props.solved ? "uugds-check" : undefined}
+          defaultChecked= {props.solved}
+          onClick= {props.onCheck}
+        />
+        {props.name}
     </Uu5Elements.ListItem>
     ) : null;
     //@@viewOff:render

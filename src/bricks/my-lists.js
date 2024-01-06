@@ -8,16 +8,17 @@ import ShoppingListTile from "./shopping-list-tile.js";
 import DarkModeToggle from "./dark-mode-toggle.js";
 import { AppBackgroundProvider } from "uu5g05";
 import importLsi from "../lsi/import-lsi.js";
+import Uu5Charts, { XyChart } from "uu5chartsg01";
 
 
 //@@viewOff:imports
 
 //@@viewOn:constants
 const INITIAL_SHOPPING_LISTS = [
-{id: Utils.String.generateId(), name: "Nákup víkend"},
-{id: Utils.String.generateId(), name: "Drogerie"},
-{id: Utils.String.generateId(), name: "Nákup Vánoce"},
-{id: Utils.String.generateId(), name: "Nákup pro babičku"},
+{id: Utils.String.generateId(), name: "Nákup víkend", number: 6},
+{id: Utils.String.generateId(), name: "Drogerie", number: 3},
+{id: Utils.String.generateId(), name: "Nákup Vánoce", number: 10},
+{id: Utils.String.generateId(), name: "Nákup pro babičku", number:9},
 ]
 //@@viewOff:constants
 
@@ -64,8 +65,17 @@ const MyLists = createVisualComponent({
       
       <Uu5TilesElements.Grid data={props.data} tileMinWidth={100} tileMaxWidth={200}>
       {<ShoppingListTile></ShoppingListTile>}
+ 
     </Uu5TilesElements.Grid>
-     
+    <Uu5Charts.XyChart data={INITIAL_SHOPPING_LISTS} 
+      serieList={[{
+                  valueKey: "number",
+                  title: "Počet položek",
+                  bar: true,
+                  colorScheme: "cyan"}]} 
+      labelAxis={{
+                  dataKey: "name"}}>
+ </Uu5Charts.XyChart>
     </Uu5Elements.Block>
     <Uu5Forms.Form.Provider key={createOpen} onSubmit={async (e) => {await props.onCreate ({id: Utils.String.generateId(), ...e.data.value }); setCreateOpen(false);}}>
       <Uu5Elements.Modal open={createOpen} onClose={() =>setCreateOpen (false)} header={<Lsi import={importLsi} path={["MyLists", "create"]}/> } 

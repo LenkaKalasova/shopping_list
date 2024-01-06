@@ -1,14 +1,18 @@
 [
     {   "id": "1",
-        "name": "Nákup víkend"
+        "name": "Nákup víkend",
+        "number": 6
     },
     {   "id": "2",
-        "name": "Drogerie"
+        "name": "Drogerie",
+        "number": 3
     },
     {   "id": "3",
-        "name": "Nákup Vánoce"
+        "name": "Nákup Vánoce",
+        "number": 10
     },
     {   "id": "4",
-        "name": "Nákup pro babičku"
+        "name": "Nákup pro babičku",
+        "number": 9
     }
 ]

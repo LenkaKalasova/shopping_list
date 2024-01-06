@@ -6,6 +6,8 @@ import Item from "./item.js";
 import Config from "./config/config.js";
 import DarkModeToggle from "./dark-mode-toggle.js";
 import importLsi from "../lsi/import-lsi.js";
+import Uu5Charts from "uu5chartsg01";
+
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -16,6 +18,9 @@ const INITIAL_ITEM_LIST = [
   {id: Utils.String.generateId(), name: "1x hladká mouka", solved: false},
   {id: Utils.String.generateId(), name: "10 vajec", solved: false}
 ]
+
+
+
 //@@viewOff:constants
 
 //@@viewOn:css
@@ -47,6 +52,7 @@ const ShoppingList = createVisualComponent({
     const { children } = props;
     const [itemList, setItemList] = useState (INITIAL_ITEM_LIST);
     const [modalOpen, setModalOpen] = useState (false);
+    const [selectedItemId, setSelectedItemId] = useState(null);
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -74,6 +80,16 @@ const ShoppingList = createVisualComponent({
       setModalOpen (false)
     }
 
+    function handleCheck(id) {
+      const updatedList = itemList.map((item) => ({
+        ...item,
+        solved: item.id === id ? !item.solved : item.solved
+      }));
+      setItemList(updatedList);
+      setSelectedItemId(id === selectedItemId ? null : itemId);
+    }
+
+
     return currentNestingLevel ? (
       <>
       <AppBackgroundProvider>
@@ -81,7 +97,9 @@ const ShoppingList = createVisualComponent({
       <Uu5Elements.Block header={<Lsi import={importLsi} path={["ShoppingList", "name"]}/>} headerType="title" actionList={[{icon: "uugds-plus-circle", children: <Lsi lsi={{cs: "Vytvořit", en: "Create"}}/>, onClick: () => setModalOpen(true) }]}>
       <Uu5Elements.Grid display="inline" {...attrs}>
         {itemList.map((item) => (
-          <Item key={item.id} {...item} onDelete = {() => handleDelete (item.id)} />
+          <Item key={item.id} {...item} onDelete = {() => handleDelete (item.id)}
+          onCheck={() => handleCheck(item.id)}
+          isChecked={selectedItemId === item.id}/>
         ))}
       </Uu5Elements.Grid>
       <Uu5Forms.Form.Provider key={modalOpen} onSubmit={handleSubmit}>
@@ -91,6 +109,11 @@ const ShoppingList = createVisualComponent({
           
         </Uu5Elements.Modal>
         </Uu5Forms.Form.Provider>
+       <Uu5Charts.PieChart data={[
+  { label:"Vyřešené položky", value: 1, colorScheme: "green" },
+  { label:"Nevyřešené položky", value: 4, colorScheme: "red" }
+]}>
+        </Uu5Charts.PieChart>
       </Uu5Elements.Block>
       </AppBackgroundProvider>
       </>

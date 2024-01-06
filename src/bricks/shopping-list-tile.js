@@ -40,7 +40,10 @@ const ShoppingListTile = createComponent({
       <Uu5TilesElements.Tile 
       header = {props.data.data.name} 
       actionList={[{icon: "uugds-close-circle-solid", onClick:() => setDeleteOpen(true) }]}>
+        
+        Počet položek: {props.data.data.number}
         </Uu5TilesElements.Tile>
+        
         <Uu5Elements.Dialog 
         open={deleteOpen}
         onClose={() => setDeleteOpen(false)}
